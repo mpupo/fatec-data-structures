@@ -29,9 +29,9 @@ int main()
 
     do
     {
-        cout << "TEATRO FATEC RUBENS LARA";
+        cout << "TEATRO FATEC RUBENS LARA" << endl;
         cout << "EVENTO: ENTREGA DE ATIVIDADE 18-02-2020" << endl;
-        cout << "Menu:";
+        cout << "Menu:" << endl;
         cout << " 1 - Comprar assento" << endl;
         cout << " 2 - Devolver assento" << endl;
         cout << " 3 - Trocar assento" << endl;
@@ -48,7 +48,7 @@ int main()
             {
                 cout << "Escolha o assento para comprar:" << endl;
                 cin >> assento;
-                assento_comprado = bilheteria.realizar_compra(teatro.getLugar(assento), 1);
+                assento_comprado = bilheteria.realizar_compra(teatro,teatro.getLugar(assento), 1);
                 if (assento_comprado)
                 {
                     cout << "Assento comprado com sucesso!" << endl;
@@ -60,6 +60,8 @@ int main()
                 }
 
             } while (assento_comprado != true);
+            system("pause");
+            system("cls");
             break;
 
         case 2:
@@ -82,7 +84,7 @@ int main()
 
                 } while (assento > num_assentos_teatro || assento <= 0);
 
-                assento_devolvido = bilheteria.realizar_devolucao(teatro.getLugar(assento), 1);
+                assento_devolvido = bilheteria.realizar_devolucao(teatro,teatro.getLugar(assento), 1);
 
                 if (assento_devolvido)
                 {
@@ -96,7 +98,8 @@ int main()
                 }
 
             } while (assento_devolvido != true);
-
+            system("pause");
+            system("cls");
             break;
 
         case 3:
@@ -118,7 +121,7 @@ int main()
                 cout << "Digite o novo assento que deseja comprar:" << endl;
                 cin >> assento_a_trocar;
 
-                troca = bilheteria.realizar_troca(teatro.getLugar(assento),teatro.getLugar(assento_a_trocar), 1);
+                troca = bilheteria.realizar_troca(teatro,teatro.getLugar(assento),teatro.getLugar(assento_a_trocar), 1);
 
                 if (troca){
                     cout << "Troca realizada com sucesso!" << endl;
@@ -129,18 +132,28 @@ int main()
                 }
                 
             } while (troca != true);
+            system("pause");
+            system("cls");
             break;
 
         case 4:
-            //teatro.getTodosOsAssentos()
+            teatro.printLugares();
+            system("pause");
+            system("cls");
             break;
 
         case 5:
             cout << "O total de acentos comprados e':" << teatro.getTotalDeLugaresComprados() << endl;
+            system("pause");
+            system("cls");
             break;
+
+        case 0:
+            exit('0');
 
         default:
             cout << "Opcao invalida. Tente novamente" << endl;
+            system("pause");
             system("cls");
             break;
         }
