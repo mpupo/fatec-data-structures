@@ -1,6 +1,10 @@
 #ifndef LISTALINEAR_H_INCLUDED
 #define LISTALINEAR_H_INCLUDED
 
+#include <iostream>
+
+using namespace std;
+
 template <typename Tipo>
 struct ListaLinear
 {
@@ -89,27 +93,29 @@ bool ListaLinear<Tipo>::esta_ordenada()
 template <typename Tipo>
 Tipo ListaLinear<Tipo>::copiar_lista()
 {
-    ListaLinear nova_lista(lista_a_copiar.tamanho);
+    ListaLinear<Tipo> lista_copiada = ListaLinear<Tipo>(tamanho);
 
-    for (int index = 0; index <= lista_a_copiar.tamanho; index++)
+    for (int index = 0; index < tamanho; index++)
     {
-        nova_lista[index] = lista_a_copiar[index];
+        lista_copiada.elementos[index] = elementos[index];
     }
 
-    return nova_lista;
+    return lista_copiada;
 }
 
 template <typename Tipo>
 Tipo ListaLinear<Tipo>::copiar_e_remover_elementos()
 {
-    for (int index = 0; index <= lista_a_remover.tamanho; index++)
+    ListaLinear<Tipo> nova_lista = ListaLinear<Tipo>(tamanho);
+
+    for (int index = 0; index < tamanho; index++)
     {
-        lista_a_copiar[index] = lista_a_remover[index];
+        nova_lista.elementos[index] = elementos[index];
     }
 
-    lista_a_remover.esvaziar_lista();
+    esvaziar_lista();
 
-    return lista_a_copiar, lista_a_remover;
+    return nova_lista;
 }
 
 template <typename Tipo>
