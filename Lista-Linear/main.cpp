@@ -17,6 +17,7 @@ int main()
 
     do
     {
+        cout << "Menu:" << endl;
         cout << "1 - Insere" << endl;
         cout << "2 - Remove" << endl;
         cout << "3 - Quantidade de elementos" << endl;
@@ -31,17 +32,21 @@ int main()
         switch (opc)
         {
         case 1:{
-            cout << "Digite o valor para inserir";
+            cout << "Digite o valor para inserir: ";
             cin >> valor;
 
-            if (!lista.esta_vazia())
+            if (!lista.esta_cheia())
             {
-                cout << "Lista cheia..." << endl;
+                lista.insere(valor);
+                
             }
             else
             {
-                lista.insere(valor);
+                cout << "Lista cheia..." << endl;
             }
+
+            system("pause");
+            system("cls");
         }break;
         case 2:
         {
@@ -53,6 +58,8 @@ int main()
             {
                 cout << "Removido: " << lista.remover() << endl;
             }
+                        system("pause");
+            system("cls");
         }
         break;
         case 3:
@@ -65,6 +72,8 @@ int main()
             {
                 cout << " Quantidade de elementos: " << lista.indice + 1 << endl;
             }
+            system("pause");
+            system("cls");
         }
         break;
         case 4:
@@ -82,6 +91,8 @@ int main()
                     cout << endl;
                 }
             }
+            system("pause");
+            system("cls");
         }
         break;
         case 5:
@@ -94,11 +105,13 @@ int main()
             {
                 cout << "A lista nao esta ordenada." << endl;
             }
+            system("pause");
+            system("cls");
         }
         break;
         case 6:
         {
-            ListaLinear<int> lista_copiada = lista.copiar_lista();
+            ListaLinear<int> lista_copiada = lista.copiar_lista(lista);
 
             cout << "Lista copiada!" << endl;
 
@@ -107,19 +120,22 @@ int main()
 
             cout << "Conteudo da lista 2: ";
             lista_copiada.printar_elementos();
+            system("pause");
+            system("cls");
         }
         break;
         case 7:
         {
-            ListaLinear<int> nova_lista = lista.copiar_e_remover_elementos();
-
+            ListaLinear<int> nova_lista = lista.copiar_lista(lista);
+            lista.esvaziar_lista();
             cout << "Lista copiada. Os elementos da antiga lista foram removidos." << endl;
-
             cout << "Conteudo da lista 1: ";
             lista.printar_elementos();
 
             cout << "Conteudo da lista 2: ";
             nova_lista.printar_elementos();
+            system("pause");
+            system("cls");
         }
         break;
         case 8:
@@ -130,6 +146,8 @@ int main()
         default:
         {
             cout << "Opcao invalida. Insira novamente a opcao desejada." << endl;
+            system("pause");
+            system("cls");
         }
         break;
         }

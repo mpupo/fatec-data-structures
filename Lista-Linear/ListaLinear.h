@@ -17,12 +17,12 @@ public:
     ListaLinear(int);
     void insere(Tipo x);
     Tipo remover();
-    bool preencher();
-    bool esvaziar_lista();
+    void preencher();
+    void esvaziar_lista();
     bool esta_ordenada();
     bool esta_vazia();
-    Tipo copiar_lista();
-    Tipo copiar_e_remover_elementos();
+    bool esta_cheia();
+    ListaLinear<Tipo> copiar_lista(ListaLinear<Tipo>);
     void printar_elementos();
 };
 
@@ -49,21 +49,34 @@ Tipo ListaLinear<Tipo>::remover()
 }
 
 template <typename Tipo>
-bool ListaLinear<Tipo>::preencher()
+void ListaLinear<Tipo>::preencher()
 {
-    return indice == tamanho - 1;
+    indice = tamanho - 1;
 }
 
 template <typename Tipo>
-bool ListaLinear<Tipo>::esvaziar_lista()
+void ListaLinear<Tipo>::esvaziar_lista()
 {
-    return indice == -1;
+    indice = -1;
 }
 
 template <typename Tipo>
 bool ListaLinear<Tipo>::esta_vazia()
 {
-    if (indice == -1)
+    if (indice != -1)
+    {
+        return false;
+    }
+    else
+    {
+        return true;
+    }
+}
+
+template <typename Tipo>
+bool ListaLinear<Tipo>::esta_cheia()
+{
+    if (indice == tamanho - 1)
     {
         return true;
     }
@@ -76,10 +89,11 @@ bool ListaLinear<Tipo>::esta_vazia()
 template <typename Tipo>
 bool ListaLinear<Tipo>::esta_ordenada()
 {
-    for (int index = 0; index <= tamanho; index++)
+    for (int index = 0; index <= indice; index++)
     {
-        if (index < tamanho)
+        if (index < indice)
         {
+            std::cout << elementos[index+1] << " e " << elementos[index] << endl;
             if (elementos[index + 1] < elementos[index])
             {
                 return false;
@@ -91,41 +105,35 @@ bool ListaLinear<Tipo>::esta_ordenada()
 }
 
 template <typename Tipo>
-Tipo ListaLinear<Tipo>::copiar_lista()
+ListaLinear<Tipo> ListaLinear<Tipo>::copiar_lista(ListaLinear<Tipo> lista_antiga)
 {
-    ListaLinear<Tipo> lista_copiada = ListaLinear<Tipo>(tamanho);
+    ListaLinear<Tipo> lista_copiada = ListaLinear<Tipo>(lista_antiga.tamanho);
+    lista_copiada.indice = lista_antiga.indice;
 
-    for (int index = 0; index < tamanho; index++)
+    for (int index = 0; index < lista_antiga.tamanho; index++)
     {
-        lista_copiada.elementos[index] = elementos[index];
+        lista_copiada.elementos[index] = lista_antiga.elementos[index];
     }
 
     return lista_copiada;
 }
 
 template <typename Tipo>
-Tipo ListaLinear<Tipo>::copiar_e_remover_elementos()
-{
-    ListaLinear<Tipo> nova_lista = ListaLinear<Tipo>(tamanho);
-
-    for (int index = 0; index < tamanho; index++)
-    {
-        nova_lista.elementos[index] = elementos[index];
-    }
-
-    esvaziar_lista();
-
-    return nova_lista;
-}
-
-template <typename Tipo>
 void ListaLinear<Tipo>::printar_elementos()
 {
-    for (int elem = 0; elem < tamanho; elem++)
+    if (indice != -1)
     {
-        cout << elementos[elem] << " ";
+        for (int elem = 0; elem <= indice; elem++)
+        {
+            cout << elementos[elem] << " ";
+        }
+        cout << endl;
     }
-    cout << endl;
+    else
+    {
+        std::cout << "Lista vazia!" << endl;
+    }
+    
 }
 
 #endif // LISTALINEAR_H_INCLUDED
