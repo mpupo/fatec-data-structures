@@ -38,6 +38,7 @@ int main()
             if (!lista.esta_cheia())
             {
                 lista.insere(valor);
+                cout << "Valor inserido!" << endl;
                 
             }
             else
@@ -58,7 +59,7 @@ int main()
             {
                 cout << "Removido: " << lista.remover() << endl;
             }
-                        system("pause");
+            system("pause");
             system("cls");
         }
         break;
