@@ -1,6 +1,3 @@
-//#ifndef PILHA_H_INCLUDED
-//#define PILHA_H_INCLUDED
-
 #pragma once
 #include <string>
 #include <vector>
@@ -146,5 +143,3 @@ struct Stack
         return isPalindromo;
     };
 };
-
-//#endif PILHA_H_INCLUDED
